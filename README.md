@@ -33,7 +33,7 @@ This repository contains the initial milestone for a CSCI 4922 deep learning res
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
-pip install -e .[dev]
+pip install -e '.[dev]'
 ```
 
 ## CLI usage

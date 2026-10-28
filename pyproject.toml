@@ -17,8 +17,8 @@ dependencies = [
   "torch>=2.2",
   "stable-baselines3>=2.3",
   "gymnasium>=0.29",
-  "pettingzoo>=1.24",
-  "mpe2>=0.0.3",
+  "pettingzoo>=1.24.3",
+  "mpe2>=1.1.1",
 ]
 
 [project.optional-dependencies]

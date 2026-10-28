@@ -8,6 +8,18 @@ import numpy as np
 
 from cat_mouse_rl.baselines.policies import BasePolicy, RandomPolicy
 
+# Compatibility shim: PettingZoo >=1.24.3 renamed AgentSelector → agent_selector.
+# mpe2 still imports the old name, so we patch sys.modules before mpe2 loads.
+import sys as _sys
+import importlib as _importlib
+_pz_selector_mod = _sys.modules.get("pettingzoo.utils.agent_selector") or _importlib.import_module("pettingzoo.utils.agent_selector")
+if not hasattr(_pz_selector_mod, "AgentSelector"):
+    _cls = getattr(_pz_selector_mod, "agent_selector", None)
+    if _cls is not None:
+        _pz_selector_mod.AgentSelector = _cls
+
+from mpe2 import simple_tag_v3  # noqa: E402 — must come after shim
+
 TAGGER_NAME = "adversary_0"
 EVADER_NAME = "agent_0"
 
@@ -28,8 +40,6 @@ class SimpleTagConfig:
 
 
 def create_parallel_env(config: SimpleTagConfig):
-    from mpe2 import simple_tag_v3
-
     kwargs = {
         "num_good": config.num_good,
         "num_adversaries": config.num_adversaries,
