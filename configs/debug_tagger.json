@@ -1,0 +1,9 @@
+{
+  "role": "tagger",
+  "timesteps": 2000,
+  "seed": 7,
+  "max_cycles": 200,
+  "evader_speed_scale": 0.8,
+  "device": "cpu",
+  "output": "checkpoints/tagger_debug.zip"
+}

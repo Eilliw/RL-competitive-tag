@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cat-and-mouse-rl"
+version = "0.1.0"
+description = "Cat and Mouse competitive reinforcement learning research project"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "CSCI 4922 Team" }]
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.0",
+  "matplotlib>=3.8",
+  "torch>=2.2",
+  "stable-baselines3>=2.3",
+  "gymnasium>=0.29",
+  "pettingzoo>=1.24",
+  "mpe2>=0.0.3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+]
+
+[project.scripts]
+cat-mouse = "cat_mouse_rl.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cat_mouse_rl*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
